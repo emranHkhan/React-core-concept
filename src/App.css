@@ -1,3 +1,10 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 .App {
   text-align: center;
 }
@@ -35,4 +42,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+/* my-styles */
+
+.nav {
+  padding: 1% 5%;
+  width: 90%;
+  margin: 10px auto;
+  justify-content: space-between;
+  background-color: #61dafb;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
 }
