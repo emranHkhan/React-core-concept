@@ -1,15 +1,14 @@
 // import logo from './logo.svg';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 const Actors = ['Tom cruise', 'Brad Pitt', 'Leonardo Dicaprio', 'Tom Hanks', 'Sylvester Stalone'];
 
 function App() {
   const style = {
-    backgroundColor: 'cyan',
     opacity: 0.8,
     padding: '10px',
-    color: 'black'
+    color: '#fff'
   }
 
   const info = [
@@ -35,7 +34,6 @@ function App() {
   ];
 
 
-
   return (
     <div className="App">
       <header className="App-header">
@@ -50,7 +48,7 @@ function App() {
         <p style={style}>I am creating something new with REACT. I hope it will be fun!</p>
 
         <CountHandler></CountHandler>
-
+         
         {
           info.map(person => <Greetings data={person}></Greetings>)
         }
@@ -60,6 +58,8 @@ function App() {
             Actors.map(actor => <li>{actor}</li>)
           }
         </ul>
+
+        <Users></Users>
 
 
       </header>
@@ -97,6 +97,27 @@ function CountHandler() {
       <button className="btn" onClick={handleIncrease}>Increase</button>
     </div>
   );
+}
+
+function Users() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+     .then(response => response.json())
+     .then(data => setUsers(data));
+  }, [])
+
+  return (
+    <div>
+      <ul>
+        {
+          users.map(user => <li>{user.name}</li>)
+        }
+      </ul>
+    </div>
+  )
+
 }
 
 export default App;
