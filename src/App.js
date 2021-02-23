@@ -1,4 +1,5 @@
 // import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 const Actors = ['Tom cruise', 'Brad Pitt', 'Leonardo Dicaprio', 'Tom Hanks', 'Sylvester Stalone'];
@@ -33,7 +34,7 @@ function App() {
 
   ];
 
-  
+
 
   return (
     <div className="App">
@@ -48,13 +49,13 @@ function App() {
         </nav>
         <p style={style}>I am creating something new with REACT. I hope it will be fun!</p>
 
-       
+        <CountHandler></CountHandler>
 
         {
           info.map(person => <Greetings data={person}></Greetings>)
         }
 
-        <ul style={{padding: '10px'}}>
+        <ul style={{ padding: '10px' }}>
           {
             Actors.map(actor => <li>{actor}</li>)
           }
@@ -69,7 +70,7 @@ function App() {
 
 
 function Greetings(props) {
-  
+
   const style = { border: '2px solid limegreen', padding: "10px", margin: "10px" };
   const { age, spouse, destination } = props.data;
   return (
@@ -78,6 +79,22 @@ function Greetings(props) {
       <p>Age: {age}</p>
       <p>Spouse: {spouse}</p>
       <p>Destination: {destination}</p>
+    </div>
+
+  );
+}
+
+function CountHandler() {
+  const [count, setCount] = useState(0);
+  const handleIncrease = () => setCount(count + 1);
+  const handleDeacrease = () => count <= 0 ? setCount(0) : setCount (count - 1);
+ 
+
+  return (
+    <div className="counter">
+      <h1>Count: {count}</h1>
+      <button className="btn" onClick={handleDeacrease}>Decrease</button>
+      <button className="btn" onClick={handleIncrease}>Increase</button>
     </div>
   );
 }
